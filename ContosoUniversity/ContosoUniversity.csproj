@@ -137,6 +137,11 @@
     </Compile>
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Migrations\201311191140519_InitialCreate.cs" />
+    <Compile Include="Migrations\201311191140519_InitialCreate.Designer.cs">
+      <DependentUpon>201311191140519_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Student.cs" />
@@ -153,6 +158,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\cuni.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -181,7 +187,11 @@
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201311191140519_InitialCreate.resx">
+      <DependentUpon>201311191140519_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
