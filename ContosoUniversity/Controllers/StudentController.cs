@@ -12,7 +12,17 @@ namespace ContosoUniversity.Controllers
 {
     public class StudentController : Controller
     {
-        private SchoolContext db = new SchoolContext();
+        private IStudentRepository studentRepository;
+
+        public StudentController()
+        {
+            studentRepository = new StudentRepository(new SchoolContext());
+        }
+
+        public StudentController(IStudentRepository studentRepository)
+        {
+            this.studentRepository = studentRepository;
+        }
 
         // GET: /Student/
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
@@ -32,8 +42,7 @@ namespace ContosoUniversity.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var students = from s in db.Students
-                           select s;
+            var students = studentRepository.GetStudents();
             if (!String.IsNullOrEmpty(searchString))
             {
                 students = students.Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())
@@ -67,7 +76,7 @@ namespace ContosoUniversity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
+            Student student = studentRepository.GetStudentByID(id.Value);
             if (student == null)
             {
                 return HttpNotFound();
@@ -92,8 +101,8 @@ namespace ContosoUniversity.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.Students.Add(student);
-                    db.SaveChanges();
+                    studentRepository.InsertStudent(student);
+                    studentRepository.Save();
                     return RedirectToAction("Index");
                 }
             }
@@ -112,7 +121,7 @@ namespace ContosoUniversity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
+            Student student = studentRepository.GetStudentByID(id.Value);
             if (student == null)
             {
                 return HttpNotFound();
@@ -131,8 +140,8 @@ namespace ContosoUniversity.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.Entry(student).State = EntityState.Modified;
-                    db.SaveChanges();
+                    studentRepository.UpdateStudent(student);
+                    studentRepository.Save();
                     return RedirectToAction("Index");
                 }
             }
@@ -157,7 +166,7 @@ namespace ContosoUniversity.Controllers
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
 
-            Student student = db.Students.Find(id);
+            Student student = studentRepository.GetStudentByID(id.Value);
             if (student == null)
             {
                 return HttpNotFound();
@@ -172,9 +181,9 @@ namespace ContosoUniversity.Controllers
         {
             try
             {
-                Student student = db.Students.Find(id);
-                db.Students.Remove(student);
-                db.SaveChanges();
+                Student student = studentRepository.GetStudentByID(id);
+                studentRepository.DeleteStudent(student.ID);
+                studentRepository.Save();
             }
             catch (RetryLimitExceededException)
             {
@@ -188,7 +197,7 @@ namespace ContosoUniversity.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                studentRepository.Dispose();
             }
             base.Dispose(disposing);
         }
