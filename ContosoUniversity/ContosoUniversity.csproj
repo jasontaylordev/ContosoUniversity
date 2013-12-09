@@ -125,7 +125,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="DAL\SchoolConfiguration.cs" />
     <Compile Include="DAL\SchoolContext.cs" />
@@ -141,12 +144,33 @@
     <Compile Include="Migrations\201311191140519_InitialCreate.Designer.cs">
       <DependentUpon>201311191140519_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201312090158022_MaxLengthOnNames.cs" />
+    <Compile Include="Migrations\201312090158022_MaxLengthOnNames.Designer.cs">
+      <DependentUpon>201312090158022_MaxLengthOnNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312090200096_ColumnFirstName.cs" />
+    <Compile Include="Migrations\201312090200096_ColumnFirstName.Designer.cs">
+      <DependentUpon>201312090200096_ColumnFirstName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312090223471_Chap5.cs" />
+    <Compile Include="Migrations\201312090223471_Chap5.Designer.cs">
+      <DependentUpon>201312090223471_Chap5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312090518142_DepartmentSP.cs" />
+    <Compile Include="Migrations\201312090518142_DepartmentSP.Designer.cs">
+      <DependentUpon>201312090518142_DepartmentSP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Enrollment.cs" />
+    <Compile Include="Models\Instructor.cs" />
+    <Compile Include="Models\OfficeAssignment.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AssignedCourseData.cs" />
     <Compile Include="ViewModels\EnrollmentDateGroup.cs" />
+    <Compile Include="ViewModels\InstructorIndexData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -186,10 +210,37 @@
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\Course\Delete.cshtml" />
+    <Content Include="Views\Course\Details.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Instructor\Create.cshtml" />
+    <Content Include="Views\Instructor\Delete.cshtml" />
+    <Content Include="Views\Instructor\Details.cshtml" />
+    <Content Include="Views\Instructor\Edit.cshtml" />
+    <Content Include="Views\Instructor\Index.cshtml" />
+    <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Department\Delete.cshtml" />
+    <Content Include="Views\Department\Details.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201311191140519_InitialCreate.resx">
       <DependentUpon>201311191140519_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312090158022_MaxLengthOnNames.resx">
+      <DependentUpon>201312090158022_MaxLengthOnNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312090200096_ColumnFirstName.resx">
+      <DependentUpon>201312090200096_ColumnFirstName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312090223471_Chap5.resx">
+      <DependentUpon>201312090223471_Chap5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312090518142_DepartmentSP.resx">
+      <DependentUpon>201312090518142_DepartmentSP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
