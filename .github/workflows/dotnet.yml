@@ -29,5 +29,5 @@ jobs:
       uses: actions/upload-artifact@v3.0.0
       with:
         name: website
-        path: ContosoUniversity/ContosoUniversity/website/**
+        path: ContosoUniversity/website/**
         if-no-files-found: error
