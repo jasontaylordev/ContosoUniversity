@@ -26,7 +26,7 @@ jobs:
     - name: Publish
       run: dotnet publish ContosoUniversity/ContosoUniversity.csproj -c Release -o website
     - name: Upload Build Artifact
-      uses: actions/upload-artifact@3.0.0
+      uses: actions/upload-artifact@v3.0.0
       with:
         name: website
         path: ContosoUniversity/website/**
